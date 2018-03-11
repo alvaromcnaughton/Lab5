@@ -1,0 +1,154 @@
+//Author: Alvaro McNaughton / Justin Fujii
+//CPSC 121 Lab 5
+//<03/11/18>
+
+#include<iostream>
+using namespace std;
+
+// Select a global constant for the array size 
+const int SIZE = 5;
+
+// Set the function to add the array elements 
+int sum(int arr[])
+{
+	int i = 0, sum = 0;
+
+	for (i = 0;i<SIZE;i++)
+	{
+		sum = sum + arr[i];
+
+	}
+
+	return sum;
+}
+// Set the function to find the average of array elements
+int mean(int arr[])
+{
+	int r = 0;
+
+	r = sum(arr);
+
+	return r / SIZE;
+
+
+}
+
+// Set the function to display array contents
+void display(int arr[])
+{
+
+	int i = 0;
+	cout << "The contents of the array is ";
+	for (i = 0;i<SIZE;i++)
+	{
+		cout << arr[i] << " ";
+	}
+}
+// Set the function for sequencing 
+void sequencing(int arr[])
+{
+	int i = 0;
+
+	for (i = 0;i<(SIZE - 1);i++)
+	{
+		cout << arr[i + 1] - arr[i] << " ";
+	}
+}
+// Set the function to find an element in the array 
+bool search(int arr[], int ch)
+{
+	int i = 0, flag = 0;
+
+	for (i = 0;i<SIZE;i++)
+	{
+		if (ch == arr[i])
+		{
+			flag = 1;
+			return true;
+		}
+	}
+
+	if (flag == 0)
+	{
+		return false;
+	}
+}
+// Set the function to reenter the array elements 
+void edit(int arr[])
+{
+	int i = 0;
+
+	cout << "Re-enter the array elements\n";
+	for (i = 0;i<SIZE;i++)
+	{
+		cout << "Enter integer " << i + 1 << " : ";
+		cin >> arr[i];
+	}
+
+}
+// Create the main function 
+int main()
+{
+
+	int arr[SIZE], i = 0, choice = 0, r = 0, ch = 0;
+	bool r2;
+
+	for (i = 0;i<SIZE;i++)
+	{
+		cout << "Enter integer " << i + 1 << " : ";
+		cin >> arr[i];
+	}
+
+	// Create menu display for functions
+	while (true)
+	{
+		cout << "\n\n1. Sum" << endl;
+		cout << "2. Mean" << endl;
+		cout << "3. Display" << endl;
+		cout << "4. Sequencing" << endl;
+		cout << "5. Search" << endl;
+		cout << "6. Edit" << endl;
+		cout << "7. Exit" << endl;
+
+		cout << "\nEnter your Choice: ";
+		cin >> choice;
+
+		// Call the appropriate function
+
+		switch (choice)
+		{
+		case 1: r = sum(arr);
+			cout << "\nThe sum of the array is " << r;
+			break;
+
+		case 2: r = mean(arr);
+			cout << "\nThe mean is " << r;
+			break;
+
+		case 3: display(arr);
+			break;
+
+		case 4:sequencing(arr);
+			break;
+
+		case 5: cout << "\nEnter a element to search: ";
+			cin >> ch;
+			r2 = search(arr, ch);
+
+			if (r2 == true)
+			{
+				cout << "\nElement found";
+			}
+			else
+				cout << "\nElement not found";
+			break;
+
+		case 6: edit(arr);
+			break;
+
+		case 7: exit(0);
+		}
+	}
+
+	return 0;
+}
